@@ -1,10 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import OneTimeCode
+from .settings import SITE_URL
 
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
+
 
     class Meta:
         model = User
@@ -25,5 +28,14 @@ class RegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
+
+        """creating one-time code for email confirmation"""
+
+        otc = OneTimeCode.generate(user)
+
+        text = f'''Please finish your resistration. Follow the link to confirm your email:
+        {SITE_URL}/profile?otcode={otc.code}'''
+        print(text)
+        user.email_user('E-mail confirmation', text)
 
         return user

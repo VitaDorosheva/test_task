@@ -119,3 +119,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SITE_URL = 'http://127.0.0.1:8000/'
+
+#replace with actual credentials in local_settings.py
+EMAIL_HOST = ''
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

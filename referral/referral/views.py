@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
+from django.core.exceptions import ValidationError
+
 
 def register(request):
     if request.method == 'POST':
@@ -9,10 +11,12 @@ def register(request):
             return redirect('/confirm/')
         else:
             '''form is not valid'''
-            form = RegistrationForm()
-
-            args = {'form': form}
-            return render(request, 'referral/register_form.html', args)
+            print('form is not valid')
+            raise ValidationError(form.errors)
+            # form = RegistrationForm()
+            #
+            # args = {'form': form}
+            # return render(request, 'referral/register_form.html', args)
     else:
         form = RegistrationForm()
 
