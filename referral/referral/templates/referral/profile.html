@@ -1,0 +1,17 @@
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Profile Page</h1>
+    <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Promo-code: {{ user.profile.promocode_generated }}</p>
+
+
+</div>
+
+{% endblock %}

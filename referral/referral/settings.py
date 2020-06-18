@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "referral.middleware.OneTimeCodeAuthMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -120,7 +121,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SITE_URL = 'http://127.0.0.1:8000/'
+AUTHENTICATION_BACKENDS = ['referral.backend.OneTimeCodeBackend',
+                           'django.contrib.auth.backends.ModelBackend',
+                           ]
+
+MIDDLEWARE_CLASSES = (
+#     "django.middleware.common.CommonMiddleware",
+#     "django.contrib.sessions.middleware.SessionMiddleware",
+#     "referral.middleware.OneTimeCodeAuthMiddleware",
+#     "django.contrib.auth.middleware.AuthenticationMiddleware",
+#     "django.middleware.doc.XViewMiddleware",
+ )
+SITE_URL = 'http://127.0.0.1:8000'
 
 #replace with actual credentials in local_settings.py
 EMAIL_HOST = ''
