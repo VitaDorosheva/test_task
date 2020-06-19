@@ -121,6 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = '/login/'
+
 AUTHENTICATION_BACKENDS = ['referral.backend.OneTimeCodeBackend',
                            'django.contrib.auth.backends.ModelBackend',
                            ]

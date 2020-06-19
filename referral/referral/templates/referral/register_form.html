@@ -4,9 +4,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <label for="promo_code">Promo-code: </label>
-        <input id="promo_code" type="text" name="promo_code">
-        <br>
+
         <button type="submit">Submit</button>
     </form>
 </div>

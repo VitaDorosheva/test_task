@@ -9,7 +9,11 @@
     <p>First name: {{ user.first_name }}</p>
     <p>Last name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
-    <p>Promo-code: {{ user.profile.promocode_generated }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ promo_form.as_p }}
+        <button type="submit">Generate</button>
+    </form>
 
 
 </div>
