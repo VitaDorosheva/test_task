@@ -51,3 +51,11 @@ def user_profile(request, pk=None):
         promo_form = PromoProfileForm(instance=request.user.profile)
         args = {'user': user, 'promo_form': promo_form}
         return render(request, 'referral/profile.html', args)
+
+def top10(request):
+    tops = UserProfile.objects.order_by('points').reverse()[:10]
+    top_list = []
+    for top in tops:
+        top_list.append({'user': top.user,
+                         'points': top.points})
+    return render(request, 'referral/top10.html', {'top_list': top_list})

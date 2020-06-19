@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^confirm/$', TemplateView.as_view(template_name='referral/confirm.html')),
     url(r'^profile/$', views.user_profile, name='view_profile'),
     url(r'^profile/(?P<pk>\d+)/$', views.user_profile, name='view_profile_with_pk'),
+    url(r'^top10/$', views.top10, name='top10'),
 
 ]

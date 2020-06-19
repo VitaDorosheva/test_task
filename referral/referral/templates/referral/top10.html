@@ -1,0 +1,19 @@
+{% block body %}
+<div class="container">
+    <h1>Top 10 users</h1>
+
+    <table>
+        <tr style="font-weight: bold;">
+            <td> User</td>
+            <td> Points </td>
+        </tr>
+    {% for top in top_list %}
+        <tr>
+            <td> {{ top.user }} </td>
+            <td> {{ top.points }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
