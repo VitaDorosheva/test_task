@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Referral App</title>
+     </head>
+	<body>
+		<div class="page-header">
+	        <h1>Referral App (test task)</h1>
+		</div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+					{% block body %}
+
+        {% endblock %}
+				</div>
+            </div>
+		</div>
+    <div id="navbar" class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+
+                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'view_profile' %}">View profile</a></li>
+                    {% else %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+
+                </ul>
+
+	</body>
+</html>
