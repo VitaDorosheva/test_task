@@ -34,6 +34,10 @@ class UserProfile(models.Model):
                                       blank=True)
     points = models.IntegerField(blank=True,
                                  default=0)
+    referrer = models.ForeignKey('self',
+                                 on_delete=models.SET_NULL,
+                                 null=True, blank=True,
+                                 related_name='referred')
 
     class Meta:
         verbose_name = 'User profile'
@@ -42,25 +46,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def generate_promocode(self):
-        """generetes random codes like 'aaa-BBB-999'
-           with pairs, delimited by delimiter """
-        if self.promocode_generated:
-            return self.promocode_generated
-        pairs = 4
-        digits = 6
-        delimiter = '-'
-        chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-
-        codes = []
-        for n in range(pairs):
-            pair = ''
-            for d in range(digits):
-                pair += random.choice(chars)
-            codes.append(pair)
-        code = delimiter.join(codes)
-        #self.promocode_generated = code
-        return code
 
 def create_profile(sender, **kwargs):
     user = kwargs["instance"]
